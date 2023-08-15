@@ -1,0 +1,70 @@
+{
+	"name": "pip_importar_datos_ventas_sweettreats",
+	"properties": {
+		"activities": [
+			{
+				"name": "Mover datos de archivo csv",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "csv_sales_data",
+						"type": "DatasetReference",
+						"parameters": {
+							"contenedor": "sampledata",
+							"directorio": "azure-data-factory-by-example-main/SampleData/SweetTreats",
+							"file_name": "*.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "asqlt_abc_retailsales",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema_name": "dbo",
+							"table_name": "Sales_LOAD"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
