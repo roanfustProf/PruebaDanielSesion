@@ -1,0 +1,50 @@
+{
+	"name": "csv_sales_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "asb_sampledata",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"contenedor": {
+				"type": "string",
+				"defaultValue": "-1"
+			},
+			"directorio": {
+				"type": "string",
+				"defaultValue": "-1"
+			},
+			"file_name": {
+				"type": "string",
+				"defaultValue": "*.csv"
+			}
+		},
+		"folder": {
+			"name": "Ejemplo01"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().directorio",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().contenedor",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
