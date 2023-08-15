@@ -222,7 +222,7 @@
 				"typeProperties": {
 					"variableName": "RunSeqNo",
 					"value": {
-						"value": "@activity('retornar RunSeqNo').output.firstRow.RunSeqNo",
+						"value": "@string(activity('retornar RunSeqNo').output.firstRow.RunSeqNo)",
 						"type": "Expression"
 					}
 				}
