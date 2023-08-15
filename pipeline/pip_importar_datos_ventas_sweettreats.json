@@ -28,6 +28,13 @@
 							{
 								"name": "SourceFileName",
 								"value": "$$FILEPATH"
+							},
+							{
+								"name": "RunSeqNo",
+								"value": {
+									"value": "@activity('retornar RunSeqNo').output.firstRow.RunSeqNo",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
