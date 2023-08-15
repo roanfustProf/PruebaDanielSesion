@@ -48,8 +48,8 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"contenedor": "sampledata",
-							"directorio": "azure-data-factory-by-example-main/SampleData/SweetTreats",
-							"file_name": "*.csv"
+							"directorio": "azure-data-factory-by-example-main/SampleData/SweetTreats/Apr-20",
+							"file_name": "Sales.csv"
 						}
 					}
 				],
