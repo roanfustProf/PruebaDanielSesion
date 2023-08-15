@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "retornar RunSeqNo",
+						"activity": "Set variable1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -32,7 +32,7 @@
 							{
 								"name": "RunSeqNo",
 								"value": {
-									"value": "@activity('retornar RunSeqNo').output.firstRow.RunSeqNo",
+									"value": "@variables('RunSeqNo')",
 									"type": "Expression"
 								}
 							}
@@ -187,7 +187,7 @@
 						},
 						"RunSeqNo": {
 							"value": {
-								"value": "@activity('retornar RunSeqNo').output.firstRow.RunSeqNo",
+								"value": "@variables('RunSeqNo')",
 								"type": "Expression"
 							},
 							"type": "Int32"
@@ -202,8 +202,37 @@
 					"referenceName": "asqldb_abc_retailsales",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "retornar RunSeqNo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "RunSeqNo",
+					"value": {
+						"value": "@activity('retornar RunSeqNo').output.firstRow.RunSeqNo",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"RunSeqNo": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
